@@ -13,11 +13,13 @@ pipeline{
                 sh 'ls -la'
             }
         }
-        // stage('Clone'){
-        //     steps{
-        //         git 'https://github.com/Bharath18sv/nodejs-demo-app.git'
-        //     }
-        // }
+        stage('Clone Repo') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/Bharath18sv/nodejs-demo-app.git',
+                credentialsId: 'Github' 
+            }
+        }
         stage('Install Dependencies'){
             steps{
                 sh 'npm install'
