@@ -1,0 +1,33 @@
+name: Node.js app #workflow name
+
+on:  #on keyword defines when should this workflow run
+  push:
+    branches: 
+      - main
+
+jobs:
+  build-and-deploy: #name of the job
+    runs-on: ubuntu-latest #uses the latest ubuntu VM provided by github
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3 #downloads the repo content to the runner VM
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3 #installs node.js
+        with: #defines input to the action
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
+
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app:latest .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/nodejs-demo-app:latest
