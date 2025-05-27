@@ -38,7 +38,10 @@ pipeline{
         }
         stage('Build Docker Image'){
             steps{
-                sh 'docker build -t $IMAGE_NAME .'
+                sh '''
+                    export PATH="/opt/homebrew/bin:$PATH"
+                    docker build -t $IMAGE_NAME .
+                '''
             }
         }
         stage('Push Docker Image'){
