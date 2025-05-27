@@ -13,11 +13,11 @@ pipeline{
                 sh 'ls -la'
             }
         }
-        stage('Clone'){
-            steps{
-                git 'https://github.com/Bharath18sv/nodejs-demo-app.git'
-            }
-        }
+        // stage('Clone'){
+        //     steps{
+        //         git 'https://github.com/Bharath18sv/nodejs-demo-app.git'
+        //     }
+        // }
         stage('Install Dependencies'){
             steps{
                 sh 'npm install'
@@ -42,7 +42,7 @@ pipeline{
                         passwordVariable: 'DOCKER_PASS',
                     )
                 ])
-                steps{
+                {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
                     sh 'docker push $IMAGE_NAME'
                 }
