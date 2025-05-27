@@ -6,6 +6,13 @@ pipeline{
     }
 
     stages{
+        stage('Test Workspace') {
+            steps {
+                echo "Workspace is: ${env.WORKSPACE}"
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
         stage('Clone'){
             steps{
                 git 'https://github.com/Bharath18sv/nodejs-demo-app.git'
