@@ -6,13 +6,6 @@ pipeline{
     }
 
     stages{
-        stage('Test Workspace') {
-            steps {
-                echo "Workspace is: ${env.WORKSPACE}"
-                sh 'pwd'
-                sh 'ls -la'
-            }
-        }
         stage('Clone Repo') {
             steps {
                 git branch: 'main',

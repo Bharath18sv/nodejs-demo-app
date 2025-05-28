@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Local env files
+.env
+.env.*
+
+# Logs
+logs
+*.log
+
+# Git
+.git
+.gitignore
+
+# Docker-related
+Dockerfile
+.dockerignore
+
+# IDEs/editors
+.vscode
+.idea
+*.swp
+
+# Mac OS junk
+.DS_Store
