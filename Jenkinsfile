@@ -33,7 +33,7 @@ pipeline{
             steps{
                 sh '''
                     export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-                    security unlock-keychain -p "MyMacPass" ~/Library/Keychains/login.keychain-db
+                    security unlock-keychain -p "svb2005" ~/Library/Keychains/login.keychain-db
                     docker build -t $IMAGE_NAME .
                 '''
             }
