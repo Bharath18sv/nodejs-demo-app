@@ -48,8 +48,11 @@ pipeline{
                     )
                 ])
                 {
-                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker push $IMAGE_NAME'
+                    sh '''
+                        export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker push $IMAGE_NAME
+                    '''
                 }
             }
         }
